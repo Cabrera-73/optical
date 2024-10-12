@@ -4,17 +4,23 @@
  */
 package gui;
 
+import code.CProductos;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author luism
  */
 public class Productos extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Productos
-     */
+    
     public Productos() {
         initComponents();
+       
+      
+       CProductos objetoProductos = new CProductos();
+       objetoProductos.MostrarProductos(tbProductos);
+        
     }
 
     /**
@@ -28,30 +34,30 @@ public class Productos extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbProductos = new javax.swing.JTable();
         btnNuevo = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(680, 440));
+        setPreferredSize(new java.awt.Dimension(880, 470));
         setRequestFocusEnabled(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Productos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbProductos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,8 +76,18 @@ public class Productos extends javax.swing.JPanel {
 
         btnNuevo.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -108,8 +124,60 @@ public class Productos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
+       CProductos objetoProducto = new CProductos();
+       int filaSeleccionada = tbProductos.getSelectedRow(); 
+       int idProducto = Integer.parseInt(tbProductos.getModel().getValueAt(filaSeleccionada, 0).toString());
+       objetoProducto.EliminarProducto(idProducto);
+       objetoProducto.MostrarProductos(tbProductos);
+       
     }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        // Crear una instancia del JDialog AgregarProducto
+    AgregarProducto dialogo = new AgregarProducto(null, true);  
+    
+    // Mostrar el JDialog
+    dialogo.setVisible(true);
+    CProductos objetoProductos = new CProductos();
+    objetoProductos.MostrarProductos(tbProductos);
+    }//GEN-LAST:event_btnNuevoActionPerformed
+    
+      private int idProductoSeleccionado;
+      
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+                                                 
+    int filaSeleccionada = tbProductos.getSelectedRow();  // Obtener la fila seleccionada
+    
+    if (filaSeleccionada >= 0) {
+             // Almacenar el ID del producto de la fila seleccionada
+         idProductoSeleccionado = Integer.parseInt(tbProductos.getModel().getValueAt(filaSeleccionada, 0).toString());
+        // Obtener los valores de las columnas de la fila seleccionada
+        String codigo = tbProductos.getValueAt(filaSeleccionada, 1).toString();
+        String nombre = tbProductos.getValueAt(filaSeleccionada, 2).toString();
+        String precio = tbProductos.getValueAt(filaSeleccionada, 3).toString();
+        String existencia = tbProductos.getValueAt(filaSeleccionada, 4).toString();
+        String categoria = tbProductos.getValueAt(filaSeleccionada, 5).toString();
+        
+        // Abrir el JDialog y pasarle los datos
+        EditarProductos editarDialog = new EditarProductos(null, true, tbProductos);
+        
+        // Asignar los valores a los campos del JDialog
+        editarDialog.setCodigo(codigo);
+        editarDialog.setNombre(nombre);
+        editarDialog.setPrecio(precio);
+        editarDialog.setExistencia(existencia);
+        editarDialog.setCategoria(categoria);
+        // Asignar el ID del producto
+        editarDialog.setIdProductoSeleccionado(idProductoSeleccionado);
+        
+        // Mostrar el diálogo
+        editarDialog.setVisible(true);
+    } else {
+        JOptionPane.showMessageDialog(null, "Por favor, selecciona una fila para editar.");
+    }
+
+
+    }//GEN-LAST:event_btnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -118,6 +186,6 @@ public class Productos extends javax.swing.JPanel {
     private javax.swing.JButton btnNuevo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbProductos;
     // End of variables declaration//GEN-END:variables
 }

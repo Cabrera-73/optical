@@ -105,11 +105,8 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(txtUserName)
                             .addComponent(btnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                             .addComponent(txtPassword)
-                            .addGroup(containerLoginLayout.createSequentialGroup()
-                                .addGroup(containerLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(userName)
-                                    .addComponent(password))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                            .addComponent(userName)
+                            .addComponent(password))))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         containerLoginLayout.setVerticalGroup(
