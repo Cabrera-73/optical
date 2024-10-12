@@ -19,18 +19,15 @@ import javax.swing.JPanel;
  *
  * @author Acer
  */
-public class Login extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Login
-     */    
+public class Login extends javax.swing.JFrame {  
     //Instanciamos fondo de pantalla
     Background fondo = new Background();
-    //Instanciamos un objeto usuario para la base de datos a la vez que creamos una variable Connection
-    //para poder instanciar el metodo conectar
+    /*Instanciamos un objeto usuario para la base de datos a la vez que creamos una variable Connection
+    para poder instanciar el metodo conectar*/
     BaseDatos usuario = new BaseDatos();
     Connection cx = usuario.conectar();
     
+    //Construct
     public Login() {
         this.setContentPane(fondo);
         setResizable(false);
@@ -169,24 +166,33 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
+        //Obtenemos las variables que nos ayudaran para validar el login
         String user = txtUserName.getText();
         String pass = new String (txtPassword.getPassword());
-        
+        //Evaluamos que las casillas no esten vacias
         if(!user.equals("") && !pass.equals("")){
             try{
-                
-                //String sql = "SELECT tipoUser from usuarios"
-                //        + " WHERE username='"+user+"' AND password = '"+pass+"'";
-                
-                String sql = "SELECT tipoUser FROM usuarios WHERE username = ? AND password = ?";
+                String sql = "SELECT nivel from usuarios"
+                       + " WHERE username='"+user+"' AND password = '"+pass+"'";
+                //Creamos la peticion y la guardamos en una variable
                 PreparedStatement ps = cx.prepareStatement(sql);
-                ps.setString(1, user);
-                ps.setString(2, pass);
+                //recibimos la peticion y la guardamos en una variable
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                String tipoUser = rs.getString("tipoUser");
-                System.out.println("Usuario encontrado: " + tipoUser);
+                //usamos una condición para que la peticion se pueda mover entre filas
+                if (rs.next()){
+                    String nivel = rs.getString("nivel");
+                    //Evaluamos niveles para restringuir funcionalidades
+                    if(nivel.equalsIgnoreCase("admin")){
+                        System.out.println("Usuario encontrado: " + nivel);
+                        Dashboard dashboard = new Dashboard();
+                        dashboard.setVisible(true);
+                        this.setVisible(false);
+                    }else{
+                        System.out.println("Usuario encontrado: " + nivel);
+                        Dashboard dashboard = new Dashboard();
+                        dashboard.setVisible(true);
+                        dispose();
+                    }
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos.");
             }

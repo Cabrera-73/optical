@@ -5,7 +5,7 @@ public class Usuario {
     private String username;
     private String name;
     private String password;
-    private boolean tipoUser;
+    private boolean tipoUser=false;
     
     //Cnstruct
     public Usuario(int id, String username, String name, String password, boolean tipoUser) {
