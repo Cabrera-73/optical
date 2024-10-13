@@ -7,9 +7,12 @@ package gui;
 import code.CVentas;
 import code.GeneradorPDF;
 import java.awt.Color;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -476,7 +479,11 @@ DefaultTableModel modeloCarrito;
         ventas.confirmarVenta(tbCarrito); //funcion ubicada en clase CVentas que hace la consulta a BD para eliminar existencias
     // Crear el PDF de la factura
     GeneradorPDF generador = new GeneradorPDF();
-    generador.crearFactura(nombreCliente, nitCliente, DireccionCliente, tbCarrito, TotalDeVenta);
+    try {
+        generador.crearFactura(nombreCliente, nitCliente, DireccionCliente, tbCarrito, TotalDeVenta);
+    } catch (IOException ex) {
+        Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     // Mensaje de éxito
     JOptionPane.showMessageDialog(null, "Venta completada y factura generada.");

@@ -158,9 +158,6 @@ public class CProductos {
         paramTablaTotalProductos.getColumnModel().getColumn(0).setMaxWidth(0);
         paramTablaTotalProductos.getColumnModel().getColumn(0).setWidth(0);
         
-        // Mostrar mensaje de éxito
-        JOptionPane.showMessageDialog(null, "Productos cargados correctamente.");
-        
     } catch (Exception e) {
         // Mostrar mensaje de error
         JOptionPane.showMessageDialog(null, "Error al mostrar los productos: " + e.toString());
