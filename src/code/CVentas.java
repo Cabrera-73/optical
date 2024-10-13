@@ -7,6 +7,11 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import java.io.FileOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter; //librerias que no estoy seguro si se usaran
+
 /**
  *
  * @author luism
@@ -55,13 +60,14 @@ public class CVentas {
 }
  
  
- public double actualizarTotal(JTable carrito) {
-    double totalGeneral = 0;
+ public float actualizarTotal(JTable carrito) {
+     float totalGeneral = 0;
+     totalGeneral = Math.round(totalGeneral * 100) / 100.0f; //Permite redondear a dos digitos
 
     for (int i = 0; i < carrito.getRowCount(); i++) {
-        totalGeneral += Double.parseDouble(carrito.getValueAt(i, 4).toString()); // Suponiendo que la columna 4 es el total
+        totalGeneral += Float.parseFloat(carrito.getValueAt(i, 4).toString()); // Suponiendo que la columna 4 es el total
     }
-
+    
     return totalGeneral; // Llama a este método para actualizar tabla
 }
  
@@ -73,9 +79,9 @@ public class CVentas {
             return false;
         }
 
-        // Verificar que el NIT tenga exactamente 9 caracteres y solo contenga dígitos
+        // Verificar que el NIT tenga exactamente 9 caracteres 
         if (nit.getText().length() != 9) {
-            JOptionPane.showMessageDialog(null, "El NIT debe contener exactamente 9 dígitos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El NIT debe contener exactamente 9 Caracteres.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
@@ -83,7 +89,25 @@ public class CVentas {
     }
 
 
+    // Método reutilizable para mostrar una confirmación personalizada
+    public boolean Confirmacion(String mensaje, String titulo) {
+        String[] opciones = {"Sí", "No"};
+        
+        int confirmacion = JOptionPane.showOptionDialog(
+                null, 
+                mensaje, 
+                titulo, 
+                JOptionPane.YES_NO_OPTION, 
+                JOptionPane.QUESTION_MESSAGE, 
+                null, 
+                opciones, 
+                opciones[1]  
+        );
 
+        return confirmacion == JOptionPane.YES_OPTION;
+    }
+
+    
     
     
 }
