@@ -23,30 +23,26 @@ public class EditarUsuarios extends javax.swing.JDialog {
     /**
      * Creates new form EditarUsuarios
      */
-    private int idUsuarioSeleccionado;
-    private JTable tbProductos;
+    private int idUser;
+    private JTable tbUsuarios;
     
+    //Instanciamos el fondo de pantalla para que en el construct lo mostremos
     Background fondo = new Background();
+    //Construct
     public EditarUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.setContentPane(fondo);
         initComponents();
     }
-    
-    public void setIdUsuarioSeleccionado(int id) {
-        this.idUsuarioSeleccionado = id;
-    }
-
-     public EditarUsuarios(Frame parent, boolean modal, JTable tbUsuarios) {
-        super(parent, modal);
-        initComponents();
-        //this.tbUsuarios = tbUsuarios;  // Guarda la referencia de la tabla
-    }
-     
-      public void setName(String name) {
+    //Setters
+    @Override
+    public void setName(String name) {
         txtName.setText(name);
     }
-
+      
+    public void setIdUser(int id) {
+        this.idUser = id;
+    }
     public void setUsername(String username) {
         txtUserName.setText(username);
     }
@@ -55,11 +51,10 @@ public class EditarUsuarios extends javax.swing.JDialog {
         txtPassword.setText(password);
     }
 
-    public void setExistencia(String existencia) {
-        txtNivel.setText(existencia);
+    public void setTipoUser(String nivel) {
+        txtNivel.setText(nivel);
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,7 +94,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel3.setText("Editar Usuario");
 
-        imgUser1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario.png"))); // NOI18N
+        imgUser1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit usuario.png"))); // NOI18N
 
         Nombre1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Nombre1.setForeground(new java.awt.Color(143, 142, 142));
@@ -122,6 +117,11 @@ public class EditarUsuarios extends javax.swing.JDialog {
         Permissions1.setText("Permissions");
 
         btnExit1.setText("Cancelar");
+        btnExit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExit1ActionPerformed(evt);
+            }
+        });
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -227,7 +227,13 @@ public class EditarUsuarios extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit1ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnExit1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,6 +275,12 @@ public class EditarUsuarios extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
+    }
+    //Metodos
+    public EditarUsuarios(Frame parent, boolean modal, JTable tbUsuarios) {
+        super(parent, modal);
+        initComponents();
+        this.tbUsuarios = tbUsuarios;  // Guarda la referencia de la tabla
     }
     class Background extends JPanel {
 

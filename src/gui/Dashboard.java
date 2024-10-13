@@ -65,6 +65,11 @@ public class Dashboard extends javax.swing.JFrame {
         btnLogOut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnLogOut.setText("Log Out");
         btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogOutMouseClicked(evt);
+            }
+        });
 
         btnVentas.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnVentas.setForeground(new java.awt.Color(255, 255, 255));
@@ -254,6 +259,13 @@ public class Dashboard extends javax.swing.JFrame {
         ShowPannel(venta);
         
     }//GEN-LAST:event_btnVentasMouseClicked
+
+    private void btnLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogOutMouseClicked
+        // TODO add your handling code here:
+        dispose();
+        Login session1 = new Login();
+        session1.setVisible(true);
+    }//GEN-LAST:event_btnLogOutMouseClicked
 
     //Funcion para mostrar los paneles en el Dashboard
    private void ShowPannel(JPanel p){

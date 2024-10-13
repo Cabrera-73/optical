@@ -94,6 +94,11 @@ public class AgregarUsuario extends javax.swing.JDialog {
         Permissions.setText("Permissions");
 
         btnExit.setText("Cancelar");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         btnAddUser.setBackground(new java.awt.Color(89, 131, 252));
         btnAddUser.setText("Añadir");
@@ -208,6 +213,7 @@ public class AgregarUsuario extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
@@ -221,6 +227,11 @@ public class AgregarUsuario extends javax.swing.JDialog {
         txtNivel.setText("");
         
     }//GEN-LAST:event_btnAddUserActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments

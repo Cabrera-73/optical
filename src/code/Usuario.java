@@ -90,81 +90,65 @@ public class Usuario {
     
     // Crear un modelo de tabla
     DefaultTableModel model = new DefaultTableModel();
-    
-    
     model.addColumn("ID");// Esta no se vera, es solo para el registro
     model.addColumn("User Name");
     model.addColumn("Nombre");
     model.addColumn("Password");
     model.addColumn("Nivel");
-
     // Configurar el modelo en la tabla
     paramTablaTotalUsuarios.setModel(model);
-    
-    // Consulta para obtener los datos, incluyendo el ID
-        String sql = "SELECT * FROM usuarios";
-    
+       
     try {
+        //creamos la consulta
+        String sql = "SELECT * FROM usuarios";
         // Ejecutar la consulta
         Statement st = cx.conectar().createStatement();
         ResultSet rs = st.executeQuery(sql);
         
-        // Crear un array para los datos, incluyendo el ID
         String[] datos = new String[5];  
 
-        // Iterar sobre los resultados
         while (rs.next()) {
-            // Obtener los datos del ResultSet y asignarlos a las posiciones correctas del array
             datos[0] = rs.getString("id");  
             datos[1] = rs.getString("username");
             datos[2] = rs.getString("name");
             datos[3] = rs.getString("password");
             datos[4] = rs.getString("nivel");
-
-            // Añadir la fila al modelo de la tabla
             model.addRow(datos);
         }
+        
         // Ocultar la primera columna (ID)
         paramTablaTotalUsuarios.getColumnModel().getColumn(0).setMinWidth(0);
         paramTablaTotalUsuarios.getColumnModel().getColumn(0).setMaxWidth(0);
-        paramTablaTotalUsuarios.getColumnModel().getColumn(0).setWidth(0);
-        
-        // Mostrar mensaje de éxito
-        JOptionPane.showMessageDialog(null, "Productos cargados correctamente.");
+        paramTablaTotalUsuarios.getColumnModel().getColumn(0).setWidth(0);  
         
     } catch (Exception e) {
-        // Mostrar mensaje de error
         JOptionPane.showMessageDialog(null, "Error al mostrar los productos: " + e.toString());
-        e.printStackTrace();  // Imprimir la traza del error
+        e.printStackTrace();
     }
 }
 
-   
-/*
-    public void EditarProducto(int id, JTextField paramCodigo, JTextField paramNombre, JTextField paramPrecio, JTextField paramExistencia, JTextField paramCategoria) {
+    public void EditarUsuario(int id, JTextField paramName, JTextField paramUsername, JTextField paramPassword , JTextField paramTipoUser) {
     // Conectar a la base de datos
     BaseDatos objetoConexion = new BaseDatos();  
     
     // Obtener los valores de los campos de texto
-    String codigo = paramCodigo.getText();
-    String nombre = paramNombre.getText();
-    double precio = Double.parseDouble(paramPrecio.getText());
-    int existencia = Integer.parseInt(paramExistencia.getText());
-    String categoria = paramCategoria.getText();
+        String name = paramName.getText();
+        String username = paramUsername.getText();
+        String password = paramPassword.getText();
+        String tipoUser = paramTipoUser.getText();
 
     // Sentencia SQL para actualizar el registro
-    String consulta = "UPDATE productos SET codigo = ?, nombre = ?, precio = ?, existencia = ?, categoria = ? WHERE ID = ?";
+    String consulta = "UPDATE usuarios SET username = ?, name = ?, password = ?, nivel = ? WHERE ID = ?";
 
     try {
         // Preparar la sentencia
         CallableStatement cs = objetoConexion.conectar().prepareCall(consulta);
 
         // Asignar los valores a la consulta
-        cs.setString(1, codigo);
-        cs.setString(2, nombre);
-        cs.setDouble(3, precio);
-        cs.setInt(4, existencia);
-        cs.setString(5, categoria);
+        cs.setString(1, username);
+        cs.setString(2, name);
+        cs.setString(3, password);
+        cs.setString(4, tipoUser);
         cs.setInt(6, id);  // El código es la clave para identificar el producto
 
         // Ejecutar la consulta
@@ -184,16 +168,15 @@ public class Usuario {
     }  
 }
 
-    public void EliminarProducto(int id){
+    public void EliminarUsuario(int id){
     
     setId(id);
     
-    BaseDatos objetoConexion = new BaseDatos();
+    BaseDatos cn = new BaseDatos();
     
-    String sql = "delete from productos where productos.id = ?;";
+    String sql = "delete from usuarios where usuarios.id = ?;";
     try {
-           // Preparar la sentencia
-        CallableStatement cs = objetoConexion.conectar().prepareCall(sql);
+        CallableStatement cs = cn.conectar().prepareCall(sql);
         
         cs.setInt(1, id);
         
@@ -209,9 +192,9 @@ public class Usuario {
             }
         
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Valio Verga" + e.toString());
+            JOptionPane.showMessageDialog(null, "Error en la selección" + e.toString());
             e.printStackTrace();  // Captura errores
         }    
     }
-*/
+
 }
