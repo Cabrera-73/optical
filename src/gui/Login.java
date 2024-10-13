@@ -230,7 +230,7 @@ public class Login extends javax.swing.JFrame {
         }
         //</editor-fold>
     }
-     class Background extends JPanel{
+    class Background extends JPanel{
         private Image imagen;
         
         public void paint (Graphics g){

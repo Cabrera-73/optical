@@ -5,7 +5,11 @@
 package gui;
 import code.CProductos;
 import code.Usuario;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -31,31 +35,24 @@ public class Usuarios extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbUsuarios = new javax.swing.JTable();
+        bg = new Background();
         btnNew = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbUsuarios = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(880, 440));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setPreferredSize(new java.awt.Dimension(860, 525));
+        setRequestFocusEnabled(false);
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Usuarios"));
+        bg.setPreferredSize(new java.awt.Dimension(860, 525));
+        bg.setRequestFocusEnabled(false);
 
-        tbUsuarios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tbUsuarios);
-
+        btnNew.setBackground(new java.awt.Color(89, 131, 252));
+        btnNew.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/addUserIcon.png"))); // NOI18N
         btnNew.setText("Nuevo");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +60,9 @@ public class Usuarios extends javax.swing.JPanel {
             }
         });
 
+        btnEdit.setBackground(new java.awt.Color(52, 168, 83));
+        btnEdit.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit usuario.png"))); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +70,9 @@ public class Usuarios extends javax.swing.JPanel {
             }
         });
 
+        btnDelete.setBackground(new java.awt.Color(234, 67, 53));
+        btnDelete.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/deleteIcon.png"))); // NOI18N
         btnDelete.setText("Borrar");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,40 +80,115 @@ public class Usuarios extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+        tbUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tbUsuarios);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/listIcon.png"))); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Lista de Usuarios");
+
+        javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
+        bg.setLayout(bgLayout);
+        bgLayout.setHorizontalGroup(
+            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(bgLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(99, 99, 99)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addComponent(btnNew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        bgLayout.setVerticalGroup(
+            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, 470));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        Usuario user = new Usuario();
+        int filaSeleccionada = tbUsuarios.getSelectedRow();
+        int idUser = Integer.parseInt(tbUsuarios.getModel().getValueAt(filaSeleccionada, 0).toString());
+        user.EliminarUsuario(idUser);
+        user.MostrarDatos(tbUsuarios);
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        int filaSeleccionada = tbUsuarios.getSelectedRow();  // Obtener la fila seleccionada
+
+        if (filaSeleccionada >= 0) {
+            // Almacenar el ID del producto de la fila seleccionada
+            int idUser = Integer.parseInt(tbUsuarios.getModel().getValueAt(filaSeleccionada, 0).toString());
+            // Obtener los valores de las columnas de la fila seleccionada
+            String username = tbUsuarios.getValueAt(filaSeleccionada, 1).toString();
+            String name = tbUsuarios.getValueAt(filaSeleccionada, 2).toString();
+            String password = tbUsuarios.getValueAt(filaSeleccionada, 3).toString();
+            String nivel = tbUsuarios.getValueAt(filaSeleccionada, 4).toString();
+
+            // Abrir el JDialog y pasarle los datos
+            EditarUsuarios editData = new EditarUsuarios(null, true, tbUsuarios);
+
+            // Asignar los valores a los campos del JDialog
+            editData.setUsername(username);
+            editData.setName(name);
+            editData.setPassword(password);
+            editData.setTipoUser(nivel);
+
+            // Asignar el ID del producto
+            editData.setIdUser(idUser);
+
+            // Mostrar el diálogo
+            editData.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Por favor, selecciona una fila para editar.");
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         // Instanciamos una nueva ventana para añadir usuarios
@@ -121,53 +199,24 @@ public class Usuarios extends javax.swing.JPanel {
         //Actualizamos tabla
         newUser.MostrarDatos(tbUsuarios);
     }//GEN-LAST:event_btnNewActionPerformed
-
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        int filaSeleccionada = tbUsuarios.getSelectedRow();  // Obtener la fila seleccionada
-    
-    if (filaSeleccionada >= 0) {
-            // Almacenar el ID del producto de la fila seleccionada
-            int idUser = Integer.parseInt(tbUsuarios.getModel().getValueAt(filaSeleccionada, 0).toString());
-        // Obtener los valores de las columnas de la fila seleccionada
-        String username = tbUsuarios.getValueAt(filaSeleccionada, 1).toString();
-        String name = tbUsuarios.getValueAt(filaSeleccionada, 2).toString();
-        String password = tbUsuarios.getValueAt(filaSeleccionada, 3).toString();
-        String nivel = tbUsuarios.getValueAt(filaSeleccionada, 4).toString();
+    class Background extends JPanel{
+        private Image imagen;
         
-        // Abrir el JDialog y pasarle los datos
-        EditarUsuarios editData = new EditarUsuarios(null, true, tbUsuarios);
-        
-        // Asignar los valores a los campos del JDialog
-        editData.setUsername(username);
-        editData.setName(name);
-        editData.setPassword(password);
-        editData.setTipoUser(nivel);
-        
-        // Asignar el ID del producto
-        editData.setIdUser(idUser);
-        
-        // Mostrar el diálogo
-        editData.setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(null, "Por favor, selecciona una fila para editar.");
+        public void paint (Graphics g){
+            imagen = new ImageIcon(getClass().getResource("/img/bgContent.png")).getImage();
+            g.drawImage(imagen, 0, 0,getWidth(),getHeight(),this);
+            setOpaque(false);
+            super.paint(g);
+        }
     }
-    }//GEN-LAST:event_btnEditActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        Usuario user = new Usuario();
-       int filaSeleccionada = tbUsuarios.getSelectedRow(); 
-       int idUser = Integer.parseInt(tbUsuarios.getModel().getValueAt(filaSeleccionada, 0).toString());
-       user.EliminarUsuario(idUser);
-       user.MostrarDatos(tbUsuarios);
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bg;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnNew;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbUsuarios;
     // End of variables declaration//GEN-END:variables

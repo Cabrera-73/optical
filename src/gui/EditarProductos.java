@@ -126,14 +126,16 @@ public class EditarProductos extends javax.swing.JDialog {
         bgForm.add(txtCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 320, 40));
         bgForm.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 320, 40));
 
+        btnModificar.setBackground(new java.awt.Color(89, 131, 252));
         btnModificar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editPackage.png"))); // NOI18N
         btnModificar.setText("Editar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
-        bgForm.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 100, -1));
+        bgForm.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 420, 120, 40));
 
         imgUser2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editPackage.png"))); // NOI18N
         bgForm.add(imgUser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
@@ -167,13 +169,15 @@ public class EditarProductos extends javax.swing.JDialog {
         bgForm.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 54, 220, 10));
         bgForm.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 320, 40));
 
+        btnExit.setBackground(new java.awt.Color(234, 67, 53));
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconExit.png"))); // NOI18N
         btnExit.setText("Cancelar");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
             }
         });
-        bgForm.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, -1, 30));
+        bgForm.add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 420, 120, 40));
 
         bgEditProduct.add(bgForm, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 431, 488));
 
