@@ -89,6 +89,11 @@ public class Dashboard extends javax.swing.JFrame {
         btnUsuarios.setText("Usuarios");
         btnUsuarios.setToolTipText("");
         btnUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUsuariosMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelButtonsLayout = new javax.swing.GroupLayout(PanelButtons);
         PanelButtons.setLayout(PanelButtonsLayout);
@@ -230,6 +235,12 @@ public class Dashboard extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnProductosMouseClicked
+
+    private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
+        // TODO add your handling code here:
+        Usuarios usuario = new Usuarios();
+        ShowPannel(usuario);
+    }//GEN-LAST:event_btnUsuariosMouseClicked
     //Funcion para mostrar los paneles en el Dashboard
    private void ShowPannel(JPanel p){
 
