@@ -71,6 +71,11 @@ public class Dashboard extends javax.swing.JFrame {
         btnVentas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnVentas.setText("Ventas");
         btnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVentasMouseClicked(evt);
+            }
+        });
 
         btnProductos.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         btnProductos.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,11 +241,20 @@ public class Dashboard extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnProductosMouseClicked
 
+
     private void btnUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseClicked
         // TODO add your handling code here:
         Usuarios usuario = new Usuarios();
         ShowPannel(usuario);
     }//GEN-LAST:event_btnUsuariosMouseClicked
+
+    private void btnVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVentasMouseClicked
+        // Borrar en caso haya errores
+        Ventas venta = new Ventas();
+        ShowPannel(venta);
+        
+    }//GEN-LAST:event_btnVentasMouseClicked
+
     //Funcion para mostrar los paneles en el Dashboard
    private void ShowPannel(JPanel p){
 
