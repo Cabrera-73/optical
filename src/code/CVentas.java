@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter; //librerias que no estoy seguro si se usaran
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -37,13 +39,19 @@ public class CVentas {
     }
 }
 
- public void confirmarVenta(JTable carrito) {
+ public void confirmarVenta(String nombreCliente, JTable carrito, float total, String nitCliente) {
     String sql = "UPDATE productos SET existencia = existencia - ? WHERE codigo = ?";
+     String sql2 = "INSERT INTO facturas (nombre, fecha, total, ruta, nit) VALUES (?, ?, ?, ?, ?)";
+     
+      String fecha = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")); 
+      String rutaPDF = "facturas/" + nombreCliente + "_" + fecha + ".pdf";  // Ruta del PDF para agregar a BD
 
+     
     try {
         BaseDatos objetoConexion = new BaseDatos();
         PreparedStatement ps = objetoConexion.conectar().prepareStatement(sql);
-
+        
+       
         for (int i = 0; i < carrito.getRowCount(); i++) { //Recorre la tabla para buscar las existencias a restar de cada producto 
             String codigo = carrito.getValueAt(i, 0).toString();
             int cantidad = Integer.parseInt(carrito.getValueAt(i, 3).toString());
@@ -54,7 +62,22 @@ public class CVentas {
         }
 
         JOptionPane.showMessageDialog(null, "Venta confirmada y existencias actualizadas.");
-    } catch (Exception e) {
+    } 
+    catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al confirmar venta: " + e.getMessage());
+    }
+    
+    BaseDatos objetoConexion = new BaseDatos(); //manda los datos a la BD
+    try (Connection con = objetoConexion.conectar(); PreparedStatement ps = con.prepareStatement(sql2)) {
+        ps.setString(1, nombreCliente);
+        ps.setString(2, fecha);
+        ps.setFloat(3, total);
+        ps.setString(4, rutaPDF);
+        ps.setString(5, nitCliente);
+        ps.executeUpdate();
+    }
+    
+    catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Error al confirmar venta: " + e.getMessage());
     }
 }
@@ -79,11 +102,13 @@ public class CVentas {
             return false;
         }
 
-        // Verificar que el NIT tenga exactamente 9 caracteres 
-        if (nit.getText().length() != 9) {
+        // Verificar que el NIT tenga exactamente 9 caracteres (Pendiente pues esta la opcion de poner C/F)
+       /* if (nit.getText().length() != 9) {
+           
             JOptionPane.showMessageDialog(null, "El NIT debe contener exactamente 9 Caracteres.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return false;
-        }
+        } */ 
+       
 
         return true; // Todos los datos son válidos
     }
@@ -107,7 +132,43 @@ public class CVentas {
         return confirmacion == JOptionPane.YES_OPTION;
     }
 
+    public void mostrarHistorialVentas(JTable tabla) {
+    DefaultTableModel model = new DefaultTableModel();
+    model.addColumn("Nombre Cliente");
+    model.addColumn("Fecha de Venta");
+    model.addColumn("Pago");
+    model.addColumn("ruta");
+    model.addColumn("NIT");
+
+    String sql = "SELECT nombre, fecha, total, ruta, nit FROM Facturas";
+    BaseDatos objetoConexion = new BaseDatos();
     
+    try (Connection con = objetoConexion.conectar();
+         Statement st = con.createStatement();
+         ResultSet rs = st.executeQuery(sql)) {
+
+        while (rs.next()) {
+            String nombreCliente = rs.getString("nombre");
+            String fecha = rs.getString("fecha");
+            String pago = String.format("Q%.2f", rs.getDouble("total"));
+            String ruta = rs.getString("ruta");
+            String NIT = rs.getString("nit");
+
+            model.addRow(new Object[]{nombreCliente, fecha, pago, ruta, NIT});
+        }
+
+        tabla.setModel(model);
+        //Oculta la fila de ruta, pues solo esta para funcionalidad y no vista (poner en 0 todo)
+        TableColumn rutaColumn = tabla.getColumnModel().getColumn(3); 
+        rutaColumn.setMinWidth(0);
+        rutaColumn.setMaxWidth(0);
+        rutaColumn.setWidth(0);
+        rutaColumn.setPreferredWidth(0);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
     
     
 }

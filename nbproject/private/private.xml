@@ -3,25 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/Optical/src/code/BaseDatos.java</file>
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/Optical/src/gui/Login.java</file>
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/Optical/src/code/Usuario.java</file>
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/Optical/src/gui/Dashboard.java</file>
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/Optical/src/gui/Usuarios.java</file>
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/Optical/src/code/CProductos.java</file>
-            <file>file:/C:/Users/Acer/Documents/NetBeansProjects/Optical/src/gui/Productos.java</file>
-=======
             <file>file:/C:/Users/luism/OneDrive/Documentos/NetBeansProjects/optical/src/gui/Dashboard.java</file>
+            <file>file:/C:/Users/luism/OneDrive/Documentos/NetBeansProjects/optical/src/gui/Historial.java</file>
             <file>file:/C:/Users/luism/OneDrive/Documentos/NetBeansProjects/optical/src/gui/Ventas.java</file>
             <file>file:/C:/Users/luism/OneDrive/Documentos/NetBeansProjects/optical/src/code/CVentas.java</file>
-            <file>file:/C:/Users/luism/OneDrive/Documentos/NetBeansProjects/optical/src/code/CProductos.java</file>
-            <file>file:/C:/Users/luism/OneDrive/Documentos/NetBeansProjects/optical/src/gui/Productos.java</file>
-<<<<<<< HEAD
             <file>file:/C:/Users/luism/OneDrive/Documentos/NetBeansProjects/optical/src/code/GeneradorPDF.java</file>
-=======
->>>>>>> 7f15cb5866a2a3b46834729932ad1aba999f556a
->>>>>>> 23355bf0e8da5d75a03fd084acebc176dac09ee6
         </group>
     </open-files>
 </project-private>
