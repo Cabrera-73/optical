@@ -5,6 +5,7 @@
 package gui;
 
 
+import code.Usuario;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -132,6 +133,11 @@ public class EditarUsuarios extends javax.swing.JDialog {
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit usuario.png"))); // NOI18N
         btnEdit.setText("Editar");
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -242,6 +248,14 @@ public class EditarUsuarios extends javax.swing.JDialog {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnExit1ActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        Usuario userEdit = new Usuario();
+        userEdit.EditarUsuario(idUser, txtName, txtUserName, txtPassword, txtNivel);
+        dispose();
+        userEdit.MostrarDatos(tbUsuarios);
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments

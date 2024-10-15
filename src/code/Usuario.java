@@ -112,7 +112,7 @@ public class Usuario {
         paramTablaTotalUsuarios.getColumnModel().getColumn(0).setWidth(0);  
         
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Error al mostrar los productos: " + e.toString());
+        JOptionPane.showMessageDialog(null, "Error al mostrar los Usuarios: " + e.toString());
         e.printStackTrace();
     }
 }
@@ -125,7 +125,7 @@ public class Usuario {
         String password = paramPassword.getText();
         String tipoUser = paramTipoUser.getText();
 
-    String consulta = "UPDATE usuarios SET username = ?, name = ?, password = ?, nivel = ? WHERE ID = ?";
+    String consulta = "UPDATE usuarios SET username = ?, name = ?, password = ?, nivel = ? WHERE id = ?";
 
     try {
         CallableStatement cs = cn.conectar().prepareCall(consulta);
@@ -134,19 +134,19 @@ public class Usuario {
         cs.setString(2, name);
         cs.setString(3, password);
         cs.setString(4, tipoUser);
-        cs.setInt(6, id);
+        cs.setInt(5, id);
 
         int resultado = cs.executeUpdate();
 
         if (resultado > 0) {
-            JOptionPane.showMessageDialog(null, "Producto actualizado correctamente.");
+            JOptionPane.showMessageDialog(null, "Usuario actualizado correctamente.");
         } else {
-            JOptionPane.showMessageDialog(null, "No se encontró el producto con el código especificado.");
+            JOptionPane.showMessageDialog(null, "No se encontró el usuario con el código especificado.");
         }
 
     } catch (Exception e) {
         // Mostrar mensaje de error
-        JOptionPane.showMessageDialog(null, "Error al actualizar el producto: " + e.toString());
+        JOptionPane.showMessageDialog(null, "Error al actualizar el usuario: " + e.toString());
         e.printStackTrace();
     }  
 }
@@ -163,12 +163,12 @@ public class Usuario {
         
         cs.setInt(1, id);
         
-          int respuesta = JOptionPane.showConfirmDialog(null,"¿Estás seguro de que deseas eliminar este registro?", "Confirmación de Eliminación",
+          int respuesta = JOptionPane.showConfirmDialog(null,"¿Estás seguro de que deseas eliminar este Usuario?", "Confirmación de Eliminación",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
          if (respuesta == JOptionPane.YES_OPTION) {
                 cs.execute();
-                JOptionPane.showMessageDialog(null, "Registro eliminado correctamente.");
+                JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente.");
             } else {
                 JOptionPane.showMessageDialog(null, "Operación cancelada.");
             }
