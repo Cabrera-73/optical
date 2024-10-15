@@ -96,6 +96,7 @@ public class AgregarUsuario extends javax.swing.JDialog {
         btnExit.setBackground(new java.awt.Color(234, 67, 53));
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconExit.png"))); // NOI18N
         btnExit.setText("Cancelar");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -105,6 +106,7 @@ public class AgregarUsuario extends javax.swing.JDialog {
         btnAddUser.setBackground(new java.awt.Color(89, 131, 252));
         btnAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/addUserIcon.png"))); // NOI18N
         btnAddUser.setText("Añadir");
+        btnAddUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddUserActionPerformed(evt);

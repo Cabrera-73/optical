@@ -130,6 +130,7 @@ public class EditarProductos extends javax.swing.JDialog {
         btnModificar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editPackage.png"))); // NOI18N
         btnModificar.setText("Editar");
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
@@ -172,6 +173,7 @@ public class EditarProductos extends javax.swing.JDialog {
         btnExit.setBackground(new java.awt.Color(234, 67, 53));
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconExit.png"))); // NOI18N
         btnExit.setText("Cancelar");
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);

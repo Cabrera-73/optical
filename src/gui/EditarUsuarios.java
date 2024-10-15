@@ -119,6 +119,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         btnExit1.setBackground(new java.awt.Color(234, 67, 53));
         btnExit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconExit.png"))); // NOI18N
         btnExit1.setText("Cancelar");
+        btnExit1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExit1ActionPerformed(evt);
@@ -130,6 +131,7 @@ public class EditarUsuarios extends javax.swing.JDialog {
         btnEdit.setBackground(new java.awt.Color(89, 131, 252));
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/edit usuario.png"))); // NOI18N
         btnEdit.setText("Editar");
+        btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

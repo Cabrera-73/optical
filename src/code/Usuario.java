@@ -16,13 +16,6 @@ public class Usuario {
     private String password;
     private String tipoUser;
     
-    /*Construct
-    public Usuario(String username, String name, String password, String tipoUser) {
-        this.username = username;
-        this.name = name;
-        this.password = password;
-        this.tipoUser = tipoUser;
-    }*/
     //Getter and Setter
 
     public int getId() {
@@ -90,18 +83,16 @@ public class Usuario {
     
     // Crear un modelo de tabla
     DefaultTableModel model = new DefaultTableModel();
-    model.addColumn("ID");// Esta no se vera, es solo para el registro
+    model.addColumn("ID");
     model.addColumn("User Name");
     model.addColumn("Nombre");
     model.addColumn("Password");
     model.addColumn("Nivel");
+    
     // Configurar el modelo en la tabla
     paramTablaTotalUsuarios.setModel(model);
-       
     try {
-        //creamos la consulta
         String sql = "SELECT * FROM usuarios";
-        // Ejecutar la consulta
         Statement st = cx.conectar().createStatement();
         ResultSet rs = st.executeQuery(sql);
         
@@ -115,8 +106,7 @@ public class Usuario {
             datos[4] = rs.getString("nivel");
             model.addRow(datos);
         }
-        
-        // Ocultar la primera columna (ID)
+        //ayuda a ocultar la tabla id
         paramTablaTotalUsuarios.getColumnModel().getColumn(0).setMinWidth(0);
         paramTablaTotalUsuarios.getColumnModel().getColumn(0).setMaxWidth(0);
         paramTablaTotalUsuarios.getColumnModel().getColumn(0).setWidth(0);  
@@ -128,33 +118,26 @@ public class Usuario {
 }
 
     public void EditarUsuario(int id, JTextField paramName, JTextField paramUsername, JTextField paramPassword , JTextField paramTipoUser) {
-    // Conectar a la base de datos
-    BaseDatos objetoConexion = new BaseDatos();  
+    BaseDatos cn = new BaseDatos();  
     
-    // Obtener los valores de los campos de texto
         String name = paramName.getText();
         String username = paramUsername.getText();
         String password = paramPassword.getText();
         String tipoUser = paramTipoUser.getText();
 
-    // Sentencia SQL para actualizar el registro
     String consulta = "UPDATE usuarios SET username = ?, name = ?, password = ?, nivel = ? WHERE ID = ?";
 
     try {
-        // Preparar la sentencia
-        CallableStatement cs = objetoConexion.conectar().prepareCall(consulta);
-
-        // Asignar los valores a la consulta
+        CallableStatement cs = cn.conectar().prepareCall(consulta);
+        //Se mandan los datos 
         cs.setString(1, username);
         cs.setString(2, name);
         cs.setString(3, password);
         cs.setString(4, tipoUser);
-        cs.setInt(6, id);  // El código es la clave para identificar el producto
+        cs.setInt(6, id);
 
-        // Ejecutar la consulta
-        int resultado = cs.executeUpdate();  // Devuelve el número de filas afectadas
+        int resultado = cs.executeUpdate();
 
-        // Verificar si la actualización fue exitosa
         if (resultado > 0) {
             JOptionPane.showMessageDialog(null, "Producto actualizado correctamente.");
         } else {
@@ -164,7 +147,7 @@ public class Usuario {
     } catch (Exception e) {
         // Mostrar mensaje de error
         JOptionPane.showMessageDialog(null, "Error al actualizar el producto: " + e.toString());
-        e.printStackTrace();  // Mostrar la traza del error
+        e.printStackTrace();
     }  
 }
 
@@ -184,7 +167,6 @@ public class Usuario {
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
          if (respuesta == JOptionPane.YES_OPTION) {
-                // Lógica para eliminar el registro
                 cs.execute();
                 JOptionPane.showMessageDialog(null, "Registro eliminado correctamente.");
             } else {
@@ -193,7 +175,7 @@ public class Usuario {
         
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error en la selección" + e.toString());
-            e.printStackTrace();  // Captura errores
+            e.printStackTrace();
         }    
     }
 
